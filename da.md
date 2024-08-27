@@ -1,16 +1,16 @@
 # 基礎爬蟲專案
 
-## LINE 電影聲量榜爬蟲專案
+# LINE 電影聲量榜爬蟲專案
 
-### 1. 專案簡介
+## 1. 專案簡介
 本專案旨在使用 Python 中的 `requests` 和 `csv` 套件從 LINE 電影聲量榜抓取電影相關資料，並將其儲存為 CSV 格式。目標是從 LINE 影音 網頁抓取電影名、英文電影名、評分、電影時長及類型，並將這些資訊寫入名為 `movie.csv` 的檔案。
 
-### 2. 使用的工具與方法
+## 2. 使用的工具與方法
 - **requests**：這個 Python 套件用於發送 HTTP 請求以獲取網頁內容。在本專案中，我們使用 `requests.get()` 方法從網頁抓取 HTML 內容。
 - **BeautifulSoup**：用於解析 HTML 內容，將其轉換為 Python 可以操作的格式。這樣我們可以輕鬆地提取所需的數據。
 - **csv**：Python 的 `csv` 模組用來處理 CSV 格式的檔案。透過 `csv.DictWriter`，我們可以將字典列表寫入 CSV 檔案，便於資料的儲存和後續分析。
 
-### 3. 程式碼範例
+## 3. 程式碼範例
 以下是完整的 Python 程式碼，用於從 LINE 電影聲量榜抓取電影資料並將其存入 CSV 檔案：
 
 ```python
@@ -66,32 +66,32 @@ with open('movie.csv', 'r', newline='', encoding='utf-8') as input_file:
     for row in rows:
         print(row)
 ```
-### 程式碼說明
+## 程式碼說明
 
-#### 請求設定
+- ### 請求設定
 我們設置了 User-Agent 來模擬真實的瀏覽器請求，防止被目標網站屏蔽。
 
-#### 資料處理
+- ### 資料處理
 使用 `requests.get()` 方法抓取網頁內容，並使用 `BeautifulSoup` 解析 HTML。這樣可以提取出電影名、英文電影名、評分、時長和類型等資訊。
 
-#### 儲存資料
+- ### 儲存資料
 使用 `csv.DictWriter` 將數據寫入 `movie.csv` 檔案中。首先定義標題行，然後逐一寫入每一行資料。
 
-### 截圖
+## 截圖
 以下為程式碼執行後的部分截圖：
 ![執行結果1](https://github.com/yichiaaa/Data_Analysis/blob/fd25bdfd13841ceef0dba33aee9e5c5c1fc22647/line.png)
 
-## YouTube 美食影片爬蟲專案
+# YouTube 美食影片爬蟲專案
 
-### 1. 專案簡介
+## 1. 專案簡介
 本專案旨在使用 Python 中的 `selenium`、`BeautifulSoup` 和 `csv` 套件從 YouTube 搜尋結果抓取美食相關影片的名稱及影片時長，並將其儲存為 CSV 格式。目標是從 YouTube 搜尋「美食」後，抓取影片名稱及影片時長，並將這些資訊寫入名為 `product.csv` 的檔案。
 
-### 2. 使用的工具與方法
+## 2. 使用的工具與方法
 - **selenium**：這個 Python 套件用於模擬瀏覽器行為，抓取前端 JavaScript 渲染的網頁內容。在本專案中，我們使用 `selenium` 來載入 YouTube 網頁並抓取所需數據。
 - **BeautifulSoup**：用於解析 HTML 內容，將其轉換為 Python 可以操作的格式。這樣我們可以輕鬆地提取所需的數據。
 - **csv**：Python 的 `csv` 模組用來處理 CSV 格式的檔案。透過 `csv.DictWriter`，我們可以將字典列表寫入 CSV 檔案，便於資料的儲存和後續分析。
 
-### 3. 程式碼範例
+## 3. 程式碼範例
 以下是完整的 Python 程式碼，用於從 YouTube 搜尋結果抓取影片資料並將其存入 CSV 檔案：
 
 ```python
@@ -142,22 +142,22 @@ with open('products.csv', 'r', newline='', encoding='utf-8') as input_file:
 # 關閉瀏覽器
 driver.quit()
 ```
-### 程式碼說明
+## 程式碼說明
 
-#### 初始化 WebDriver
+- ### 初始化 WebDriver
 我們使用 `selenium` 的 `webdriver.Chrome()` 初始化 Chrome 瀏覽器驅動。
 
-#### 頁面抓取
+- ### 頁面抓取
 使用 `driver.get()` 來載入 YouTube 搜尋結果頁，並等待頁面載入完成。
 
-#### 資料處理
+- ### 資料處理
 使用 `BeautifulSoup` 解析頁面內容，提取影片名稱和時長。
 
-#### 儲存資料
+- ### 儲存資料
 使用 `csv.DictWriter` 將數據寫入 `product.csv` 檔案中。首先定義標題行，然後逐一寫入每一行資料。
 
 
-### 截圖
+## 截圖
 以下為程式碼執行後的部分截圖：
 ![執行結果1](https://github.com/yichiaaa/Data_Analysis/blob/fd25bdfd13841ceef0dba33aee9e5c5c1fc22647/yt.png)
 
