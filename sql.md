@@ -12,16 +12,24 @@
 
 
 ## 3. 資料建構
-  ![menu](https://github.com/yichiaaa/Data_Analysis/blob/cacfe507f7ad4481a2e5dce02f38ce9daad0e4d0/menu.png)
--  前後共建置與下載六個資料庫，並重新建置其內部資料的關聯性，資料筆數超過一千則。
--  資料包括顧客銷售時間、ID、價錢等商品資訊，以及自行分析與增列 RFM point 資料庫。
+<p>
+  <img src="https://github.com/yichiaaa/Data_Analysis/blob/cacfe507f7ad4481a2e5dce02f38ce9daad0e4d0/menu.png" alt="menu" style="float: left; margin-right: 20px; width: 300px;"/>
+  <span>
+    <ul>
+      <li>建置並下載了六個資料庫，並對其內部資料進行了重整和關聯性重建，總資料筆數超過一千條。</li>
+      <li>資料內容涵蓋：顧客銷售時間、顧客ID、商品價格等資訊</li>
+      <li>自行增設了RFM點數資料庫以提升數據洞察。</li>
+      <li>資料庫還包括了關鍵字搜尋、廣告效果及流量數據等詳細資訊。</li>
+    </ul>
+  </span>
+</p>
 
 ## 4. 資料分析
 
-### 第一步: 了解資料
-完成繁雜的資料處理後，首先進行簡單的敘述性資料分析。例如：
+## 第一步: 了解資料
 
-#### 如果希望知道訂單（order）中各類別（category）商品（product）的平均價格則
+### 完成繁雜的資料處理後，首先進行簡單的敘述性資料分析。例如：
+### 1. 如果希望知道訂單（order）中各類別（category）商品（product）的平均價格則
 
 ```sql
 SELECT category, AVG(price) FROM orders 
@@ -30,7 +38,7 @@ INNER JOIN products ON order_details.product_id = products.id GROUP BY category;
 ```
 ![](https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/1.png)
 ​
-#### 若希望使用 視窗函式 進行訂單（orders）金額（amount）的移動平均數計算
+### 2. 若希望使用 視窗函式 進行訂單（orders）金額（amount）的移動平均數計算
 ```
 SELECT id, 
 amount, 
@@ -38,12 +46,12 @@ AVG(amount) OVER (ORDER BY id ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) AS movin
 ```
 ![](https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/2.png)
 
-### 第二步:利用RFM分析潛在顧客
-####先計算可參考資料的次數或是可參考數額
+## 第二步:利用RFM分析潛在顧客
+### 1. 先計算可參考資料的次數或是可參考數額
 ![](https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/3.png)
-######資料是從6/27~7/30的網站瀏覽及購買資料，可以發現在這段期間裡消費者最常觀望的商品為133及1343，但消費者最終都選擇1343甚至購買，後續可以了解133及1343的產品是否有關連性，或是1343較優異的地方為何。其中更可以發現被購買最多的產品為53343。
+### 資料是從6/27~7/30的網站瀏覽及購買資料，可以發現在這段期間裡消費者最常觀望的商品為133及1343，但消費者最終都選擇1343甚至購買，後續可以了解133及1343的產品是否有關連性，或是1343較優異的地方為何。其中更可以發現被購買最多的產品為53343。
 
-##### 後自行定義RFM Point 分數進行分析
+### 2. 後自行定義RFM Point 分數進行分析
 ```
 CREATE VIEW RFM_points2
 AS
@@ -77,11 +85,19 @@ FROM RFM;
 ```
 ![](https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/4.png)
 ![](https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/5.png)
-######透過RFM分析得知，最有價值的使用者依序應為5、2，6與1則並列第三，這些會員將是未來需重點關注及服務的對象。
+### 透過RFM分析得知，最有價值的使用者依序應為5、2，6與1則並列第三，這些會員將是未來需重點關注及服務的對象。
 
-### 第三步:資料視覺化
-##### 利用各種資料視覺化套件如Numpy、pandas、連接jupyter notebook都可以來繪製視覺畫圖示
-###### 範例程式碼如下
+## 第三步:資料視覺化
+### 利用各種資料視覺化套件如Numpy、pandas、連接jupyter notebook都可以來繪製視覺畫圖示
+
+<img src="https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/6.png" alt="chart 1" style="display: block; margin: 0 auto; width: 70%;"/>
+<div style="display: flex; justify-content: center; margin-top: 20px;">
+  <img src="https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/7.png" alt="chart 2" style="width: 45%; margin-right: 10px;"/>
+  <img src="https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/8.png" alt="chart 3" style="width: 45%;"/>
+</div>
+
+
+### 範例程式碼如下
 
 ```
 import pandas as pd
@@ -152,6 +168,3 @@ axes[2].axis('equal')
 plt.tight_layout()
 plt.show()
 ```
-![](https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/6.png)
-![](https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/7.png)
-![](https://github.com/yichiaaa/Data_Analysis/blob/dc7d597727fa938a0c1374de065dd93de16c335e/8.png)
